@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/students")
 public class StudentController {
     private final StudentService service;
-
     @PostMapping("/register")
     public ResponseEntity<?> registerStudent(@RequestBody StudentRegistrationRequest request) throws CustomException {
         return new ResponseEntity<>(service.createStudent(request), HttpStatus.CREATED);
@@ -29,7 +28,6 @@ public class StudentController {
     public ResponseEntity<?> allocateCourse(@PathVariable String courseId) throws CustomException {
         return new ResponseEntity<>(service.allocateCourse(courseId), HttpStatus.OK);
     }
-
     @PutMapping("/update-course/{courseId}")
     public ResponseEntity<?> updateCourseByStudent(@RequestBody UpdateCourseByStudent updateCourseByStudent, @PathVariable String courseId) throws CustomException {
         return new ResponseEntity<>(service.update(updateCourseByStudent, courseId), HttpStatus.OK);
